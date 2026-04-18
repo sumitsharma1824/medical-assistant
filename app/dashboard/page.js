@@ -387,21 +387,13 @@ export default function DashboardPage() {
 
                   {/* CTA */}
                   <div className="flex flex-wrap gap-4">
-                    <Link href="/chat" id="new-chat-btn">
+                    <Link href="/chat" id="open-chat-btn">
                       <button className="flex items-center gap-2.5 px-6 py-3 rounded-xl text-sm font-semibold text-white transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0"
                         style={{ background: 'linear-gradient(135deg,#4f8ef7,#6366f1)', boxShadow: '0 4px 20px rgba(79,142,247,0.3)' }}>
                         <MessageSquarePlus size={17} />
-                        New Conversation
+                        Open MedAssist AI
                       </button>
                     </Link>
-                    {recentChats.length > 0 && (
-                      <Link href="/chat">
-                        <button className="flex items-center gap-2.5 px-6 py-3 rounded-xl text-sm font-medium text-gray-300 border border-white/[0.08] bg-white/[0.03] hover:bg-white/[0.07] hover:text-white transition-all duration-200">
-                          <Clock size={16} />
-                          Continue last chat
-                        </button>
-                      </Link>
-                    )}
                   </div>
                 </div>
 

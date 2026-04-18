@@ -6,6 +6,16 @@ const ChatSchema = new mongoose.Schema({
     required: true,
     index: true,
   },
+  session_id: {
+    type: String,
+    index: true,
+    // Not required — old documents may not have this field
+    default: () => `sess_legacy_${Date.now()}`,
+  },
+  session_title: {
+    type: String,
+    default: 'New Chat',
+  },
   role: {
     type: String,
     required: true,
@@ -22,8 +32,13 @@ const ChatSchema = new mongoose.Schema({
   createdAt: {
     type: Date,
     default: Date.now,
-    expires: 259200 // 3 days in seconds
-  }
+    expires: 259200, // 3 days in seconds
+  },
 });
+
+// Force re-compile in dev so hot-reload always picks up schema changes
+if (process.env.NODE_ENV !== 'production') {
+  delete mongoose.models.Chat;
+}
 
 export default mongoose.models.Chat || mongoose.model('Chat', ChatSchema);
